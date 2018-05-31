@@ -104,7 +104,8 @@ void LocalStore::optimisePath_(Activity * act, OptimiseStats & stats,
        *.app/Contents/Resources/\*.lproj seem to be the only paths affected. See
        https://github.com/NixOS/nix/issues/1443 for more discussion. */
 
-    if (std::regex_search(path, std::regex("\\.app/Contents/PkgInfo$")) ||
+    if (std::regex_search(path, std::regex("\\.DS_Store$")) ||
+        std::regex_search(path, std::regex("\\.app/Contents/PkgInfo$")) ||
         std::regex_search(path, std::regex("\\.app/Contents/Resources/.+\\.lproj$")))
     {
         debug(format("'%1%' is not allowed to be linked in macOS") % path);
